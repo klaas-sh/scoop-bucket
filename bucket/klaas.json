@@ -10,6 +10,11 @@
         }
     },
     "bin": "klaas.exe",
+    "post_install": [
+        "$dataDir = \"$env:LOCALAPPDATA\\klaas\"",
+        "if (!(Test-Path $dataDir)) { New-Item -ItemType Directory -Path $dataDir -Force | Out-Null }",
+        "'$version' | Out-File -FilePath \"$dataDir\\.installed\" -Encoding UTF8 -NoNewline"
+    ],
     "checkver": {
         "github": "https://github.com/klaas-sh/cli"
     },
